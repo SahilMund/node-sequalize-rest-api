@@ -1,17 +1,17 @@
 # NODE SEQUALIZE - MYSQL CRUD
 
-`
+```
   "dependencies": {
     "cors": "^2.8.5",
     "express": "^4.17.1",
     "mysql2": "^2.1.0",
     "sequelize": "^6.3.4"
   }
-`
+```
 ## RELATIONAL DATABASE MODEL IN SEQUALIZE
 ### EXAMPLE :-
 tutorial.model.js
-`
+```
 module.exports = (sequelize, DataTypes) => {
   const Tutorial = sequelize.define("tutorial", {
     title: {
@@ -24,9 +24,9 @@ module.exports = (sequelize, DataTypes) => {
 
   return Tutorial;
 };
-`
+```
 comment.model.js
-`
+```
 module.exports = (sequelize, DataTypes) => {
   const Comment = sequelize.define("comment", {
     name: {
@@ -39,10 +39,10 @@ module.exports = (sequelize, DataTypes) => {
 
   return Comment;
 };
-`
+```
 index.js
 
-`
+```
 const dbConfig = require("../config/db.config.js");
 
 const Sequelize = require("sequelize");
@@ -74,9 +74,9 @@ db.comments.belongsTo(db.tutorials, {
 });
 
 module.exports = db;
-`
+```
 ### create comment controller
-`
+```
 exports.createComment = (tutorialId, comment) => {
   return Comment.create({
     name: comment.name,
@@ -91,9 +91,9 @@ exports.createComment = (tutorialId, comment) => {
       console.log(">> Error while creating comment: ", err);
     });
 };
-`
+```
 ### fetch fomment by tutorial
-`
+```
 exports.findTutorialById = (tutorialId) => {
   return Tutorial.findByPk(tutorialId, { include: ["comments"] })
     .then((tutorial) => {
@@ -103,10 +103,10 @@ exports.findTutorialById = (tutorialId) => {
       console.log(">> Error while finding tutorial: ", err);
     });
 };
-`
+```
 ### fetch the comments for a given comment id
 
-`
+```
 exports.findCommentById = (id) => {
   return Comment.findByPk(id, { include: ["tutorial"] })
     .then((comment) => {
@@ -116,9 +116,9 @@ exports.findCommentById = (id) => {
       console.log(">> Error while finding comment: ", err);
     });
 };
-`
+```
 ### Get all Tutorials include comments
-`
+```
 exports.findAll = () => {
   return Tutorial.findAll({
     include: ["comments"],
@@ -126,4 +126,4 @@ exports.findAll = () => {
     return tutorials;
   });
 };
-`
+```
