@@ -219,4 +219,24 @@ Subtask.findAll({
 
   // Will order randomly based on the dialect (instead of fn('RAND') or fn('RANDOM'))
   order: sequelize.random()
-})```
+})
+```
+## Relationship
+### One:One
+```
+// foreign key has to be defined on both sides.
+Parent.hasOne(Child, {foreignKey: 'Parent_parentId'})
+// "Parent_parentId" column will exist in the "belongsTo" table.
+Child.belongsTo(Parent, {foreignKey: 'Parent_parentId'})
+
+```
+### One:Many
+```
+Parent.hasMany(Child, {foreignKey: 'Parent_parentId'})
+Child.belongsTo(Parent, {foreignKey: 'Parent_parentId'})
+```
+### One:Many
+```
+Book.belongsToMany(Article, {foreignKey: Book_id});
+Article.belongsToMany(Books, {foreignKey: Article_id});});
+```
