@@ -235,7 +235,7 @@ Child.belongsTo(Parent, {foreignKey: 'Parent_parentId'})
 Parent.hasMany(Child, {foreignKey: 'Parent_parentId'})
 Child.belongsTo(Parent, {foreignKey: 'Parent_parentId'})
 ```
-### One:Many
+### Many:Many
 ```
 Book.belongsToMany(Article, {foreignKey: Book_id});
 Article.belongsToMany(Books, {foreignKey: Article_id});});
