@@ -4,14 +4,16 @@ const cors = require("cors");
 const app = express();
 
 app.use(express.json());
-var corsOptions = {
+var corsOptions = { 
     origin: "http://localhost:3000"
   };
 app.use(cors(corsOptions))
-
-const db = require("./models/index.js");
-db.sequelize.sync();
-
+// Database
+const db = require('./config/db.config');
+// Test DB
+db.authenticate()
+  .then(() => console.log('Database connected...'))
+  .catch(err => console.log('Error: ' + err))
 //routes settings
 app.get("/", (req, res) => {
   res.send("Server working 🔥");
